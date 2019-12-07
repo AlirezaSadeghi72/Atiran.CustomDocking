@@ -130,7 +130,7 @@ namespace Atiran.CustomDocking.MassageBox
             this.btnNoAll.Location = new System.Drawing.Point(3, 3);
             this.btnNoAll.Name = "btnNoAll";
             this.btnNoAll.Size = new System.Drawing.Size(75, 30);
-            this.btnNoAll.TabIndex = 3;
+            this.btnNoAll.TabIndex = 0;
             this.btnNoAll.Text = "انصراف";
             this.btnNoAll.UseVisualStyleBackColor = false;
             this.btnNoAll.Enter += new System.EventHandler(this.Button_Enter);
@@ -145,7 +145,7 @@ namespace Atiran.CustomDocking.MassageBox
             this.btnNo.Location = new System.Drawing.Point(169, 3);
             this.btnNo.Name = "btnNo";
             this.btnNo.Size = new System.Drawing.Size(75, 30);
-            this.btnNo.TabIndex = 1;
+            this.btnNo.TabIndex = 2;
             this.btnNo.Text = "خير";
             this.btnNo.UseVisualStyleBackColor = false;
             this.btnNo.Enter += new System.EventHandler(this.Button_Enter);
@@ -160,7 +160,7 @@ namespace Atiran.CustomDocking.MassageBox
             this.btnYesAll.Location = new System.Drawing.Point(81, 3);
             this.btnYesAll.Name = "btnYesAll";
             this.btnYesAll.Size = new System.Drawing.Size(75, 30);
-            this.btnYesAll.TabIndex = 2;
+            this.btnYesAll.TabIndex = 1;
             this.btnYesAll.Text = "بلي(همه)";
             this.btnYesAll.UseVisualStyleBackColor = false;
             this.btnYesAll.Enter += new System.EventHandler(this.Button_Enter);
@@ -175,7 +175,7 @@ namespace Atiran.CustomDocking.MassageBox
             this.btnYes.Location = new System.Drawing.Point(248, 3);
             this.btnYes.Name = "btnYes";
             this.btnYes.Size = new System.Drawing.Size(75, 30);
-            this.btnYes.TabIndex = 0;
+            this.btnYes.TabIndex = 3;
             this.btnYes.Text = "بلي";
             this.btnYes.UseVisualStyleBackColor = false;
             this.btnYes.Enter += new System.EventHandler(this.Button_Enter);

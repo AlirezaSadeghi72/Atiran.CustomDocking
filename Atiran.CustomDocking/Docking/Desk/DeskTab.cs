@@ -78,7 +78,8 @@ namespace Atiran.CustomDocking.Docking.Desk
 
         }
 
-        public bool ShowQuestionClose = false;
+        public string TextName ;
+        public int Kind = 0;
         private string m_fileName = string.Empty;
         private ContextMenuStrip contextMenuStrip1;
         private System.ComponentModel.IContainer components;
@@ -132,7 +133,7 @@ namespace Atiran.CustomDocking.Docking.Desk
 
         private void miClose_Click(object sender, EventArgs e)
         {
-            if (ShowQuestionClose)
+            if (Kind == 1)
             {
                 if (ShowPersianMessageBox.ShowMessge("پيغام", "آيا تب " + Text + " بسته شود",
                         MessageBoxButtons.YesNo, false, false) == DialogResult.Yes)
@@ -173,7 +174,7 @@ namespace Atiran.CustomDocking.Docking.Desk
 
         private void TryClose(Atiran.CustomDocking.Docking.Desk.DeskTab form, Form[] forms)
         {
-            if (form.ShowQuestionClose)
+            if (form.Kind == 1)
             {
                 if (!isCLoseAll)
                 {

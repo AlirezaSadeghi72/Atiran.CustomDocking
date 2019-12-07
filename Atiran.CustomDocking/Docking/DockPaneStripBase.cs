@@ -265,7 +265,7 @@ namespace Atiran.CustomDocking.Docking
             {
                 IDockContent content = Tabs[index].Content;
 
-                if ((Tabs[index].Content.DockHandler.Form as DeskTab).ShowQuestionClose)
+                if ((Tabs[index].Content.DockHandler.Form as DeskTab).Kind == 1)
                 {
                     if (ShowPersianMessageBox.ShowMessge("پيغام", "آيا تب " + Tabs[index].Content.DockHandler.TabText + " بسته شود",
                               MessageBoxButtons.YesNo,false,false) == DialogResult.Yes)
