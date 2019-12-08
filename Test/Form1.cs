@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Atiran.CustomDocking.Docking;
 using Atiran.CustomDocking.Docking.Desk;
+using Atiran.CustomDocking.Docking.Theme.ThemeVS2012;
 
 namespace Test
 {
@@ -34,6 +35,11 @@ namespace Test
             }
             else
                 sh.Show(dockPanel1);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dockPanel1.ActiveDocumentPane?.TabStripControl.StripMenuShowDropDown();
         }
     }
 }

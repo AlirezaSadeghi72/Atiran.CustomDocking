@@ -31,8 +31,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dockPanel1 = new Atiran.CustomDocking.Docking.DockPanel();
-            this.vS2017LightTheme1 = new Atiran.CustomDocking.Docking.Theme.ThemeVS2017.VS2017LightTheme();
             this.vS2017DarkTheme1 = new Atiran.CustomDocking.Docking.Theme.ThemeVS2017.VS2017DarkTheme();
+            this.vS2017LightTheme1 = new Atiran.CustomDocking.Docking.Theme.ThemeVS2017.VS2017LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.dockPanel1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,6 +58,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dockPanel1
             // 

@@ -1344,6 +1344,28 @@ namespace Atiran.CustomDocking.Docking.Theme.ThemeVS2012
 
         }
 
+        public override void StripMenuShowDropDown()
+        {
+            SelectMenu.ShowCheckMargin = true;
+            SelectMenu.Items.Clear();
+            foreach (TabVS2012 tab in Tabs)
+            {
+                IDockContent content = tab.Content;
+
+                ToolStripItem item = SelectMenu.Items.Add(content.DockHandler.TabText, content.DockHandler.Icon.ToBitmap());
+                item.Tag = tab.Content;
+
+                item.Click += new EventHandler(ContextMenuItem_Click);
+                item.MouseMove += new MouseEventHandler(ContextMenuItem_MuseMove);
+                //item.BackgroundImage = DockPane.ActiveContent == content ? new Bitmap(Resources.MaskTabClose) :null;
+                if (DockPane.ActiveContent == content)
+                {
+                    item.BackColor = Color.SkyBlue;
+                }
+            }
+
+            ShowDropDown();
+        }
         private void ShowDropDown()
         {
             try

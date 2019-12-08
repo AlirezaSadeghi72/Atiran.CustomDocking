@@ -13,6 +13,12 @@ namespace Atiran.CustomDocking.Docking
 {
     public abstract class DockPaneStripBase : Control
     {
+
+        public virtual void StripMenuShowDropDown()
+        {
+
+        }
+
         [SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         protected internal class Tab : IDisposable
         {
