@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.dockPanel1 = new Atiran.CustomDocking.Docking.DockPanel();
@@ -62,8 +63,10 @@
             // 
             // dockPanel1
             // 
+            this.dockPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dockPanel1.BackgroundImage")));
+            this.dockPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.dockPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPanel1.DockBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.dockPanel1.DockBackColor = System.Drawing.Color.Transparent;
             this.dockPanel1.Location = new System.Drawing.Point(0, 46);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.Padding = new System.Windows.Forms.Padding(6);

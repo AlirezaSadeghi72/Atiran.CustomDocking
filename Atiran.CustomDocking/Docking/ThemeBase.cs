@@ -108,7 +108,7 @@ namespace Atiran.CustomDocking.Docking
             else
             {
                 _dockBackColor = dockPanel.DockBackColor;
-                dockPanel.DockBackColor = ColorPalette.MainWindowActive.Background;
+                //dockPanel.DockBackColor = ColorPalette.MainWindowActive.Background;
                 dockPanel.SetDummy();
             }
 

@@ -42,9 +42,9 @@ namespace Atiran.CustomDocking.Docking
         private readonly FloatWindowCollection m_floatWindows;
         private AutoHideWindowControl m_autoHideWindow;
         private DockWindowCollection m_dockWindows;
-        private readonly DockContent m_dummyContent; 
+        private readonly DockContent m_dummyContent;
         private readonly Control m_dummyControl;
-        
+
         public DockPanel()
         {
             ShowAutoHideContentOnHover = true;
@@ -70,7 +70,8 @@ namespace Atiran.CustomDocking.Docking
 
         internal void SetDummy()
         {
-            DummyControl.BackColor = DockBackColor;
+            if (DockBackColor != Color.Transparent)
+                DummyControl.BackColor = DockBackColor;
         }
 
         private Color m_BackColor;
@@ -114,7 +115,7 @@ namespace Atiran.CustomDocking.Docking
         internal AutoHideStripBase AutoHideStripControl
         {
             get
-            {	
+            {
                 if (m_autoHideStripControl == null)
                 {
                     m_autoHideStripControl = Theme.Extender.AutoHideStripFactory.CreateAutoHideStrip(this);
@@ -153,7 +154,7 @@ namespace Atiran.CustomDocking.Docking
 
         private bool m_disposed;
 
-        protected  override void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (!m_disposed && disposing)
             {
@@ -171,7 +172,7 @@ namespace Atiran.CustomDocking.Docking
 
                 m_disposed = true;
             }
-                
+
             base.Dispose(disposing);
         }
 
@@ -201,7 +202,7 @@ namespace Atiran.CustomDocking.Docking
             {
                 if (Win32Helper.IsRunningOnMono && value)
                     throw new InvalidOperationException("AllowEndUserDocking can only be false if running on Mono");
-                    
+
                 m_allowEndUserDocking = value;
             }
         }
@@ -262,7 +263,7 @@ namespace Atiran.CustomDocking.Docking
             }
         }
 
-        protected  override void OnRightToLeftChanged(EventArgs e)
+        protected override void OnRightToLeftChanged(EventArgs e)
         {
             base.OnRightToLeftChanged(e);
             foreach (FloatWindow floatWindow in FloatWindows)
@@ -275,7 +276,7 @@ namespace Atiran.CustomDocking.Docking
         [LocalizedDescription("DockPanel_ShowDocumentIcon_Description")]
         public bool ShowDocumentIcon
         {
-            get	{	return m_showDocumentIcon;	}
+            get { return m_showDocumentIcon; }
             set
             {
                 if (m_showDocumentIcon == value)
@@ -582,7 +583,7 @@ namespace Atiran.CustomDocking.Docking
         [DefaultValue(DocumentStyle.DockingMdi)]
         public DocumentStyle DocumentStyle
         {
-            get	{	return m_documentStyle;	}
+            get { return m_documentStyle; }
             set
             {
                 if (value == m_documentStyle)
@@ -682,7 +683,7 @@ namespace Atiran.CustomDocking.Docking
             return 0;
         }
 
-        protected  override void OnLayout(LayoutEventArgs levent)
+        protected override void OnLayout(LayoutEventArgs levent)
         {
             if (Theme == null)
             {
@@ -735,22 +736,24 @@ namespace Atiran.CustomDocking.Docking
             return AutoHideStripControl.GetTabStripRectangle(dockState);
         }
 
-        protected  override void OnPaint(PaintEventArgs e)
+        protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+            if (DockBackColor != Color.Transparent)
+            {
+                if (DockBackColor.ToArgb() == BackColor.ToArgb())
+                    return;
 
-            if (DockBackColor.ToArgb() == BackColor.ToArgb())
-                return;
-
-            Graphics g = e.Graphics;
-            SolidBrush bgBrush = new SolidBrush(DockBackColor);
-            g.FillRectangle(bgBrush, ClientRectangle);
+                Graphics g = e.Graphics;
+                SolidBrush bgBrush = new SolidBrush(DockBackColor);
+                g.FillRectangle(bgBrush, ClientRectangle);
+            }
         }
 
         internal void AddContent(IDockContent content)
         {
             if (content == null)
-                throw(new ArgumentNullException());
+                throw (new ArgumentNullException());
 
             if (!Contents.Contains(content))
             {
@@ -792,8 +795,8 @@ namespace Atiran.CustomDocking.Docking
         internal void RemoveContent(IDockContent content)
         {
             if (content == null)
-                throw(new ArgumentNullException());
-            
+                throw (new ArgumentNullException());
+
             if (Contents.Contains(content))
             {
                 Contents.Remove(content);
@@ -818,7 +821,7 @@ namespace Atiran.CustomDocking.Docking
             if (FloatWindows.Count != 0)
                 return;
 
-            if (ParentForm == null) 
+            if (ParentForm == null)
                 return;
 
             ParentForm.Focus();
@@ -828,12 +831,12 @@ namespace Atiran.CustomDocking.Docking
         {
             int oldIndex = Panes.IndexOf(pane);
             if (oldIndex == -1)
-                throw(new ArgumentException(Strings.DockPanel_SetPaneIndex_InvalidPane));
+                throw (new ArgumentException(Strings.DockPanel_SetPaneIndex_InvalidPane));
 
             if (index < 0 || index > Panes.Count - 1)
                 if (index != -1)
-                    throw(new ArgumentOutOfRangeException(Strings.DockPanel_SetPaneIndex_InvalidIndex));
-                
+                    throw (new ArgumentOutOfRangeException(Strings.DockPanel_SetPaneIndex_InvalidIndex));
+
             if (oldIndex == index)
                 return;
             if (oldIndex == Panes.Count - 1 && index == -1)
@@ -891,7 +894,7 @@ namespace Atiran.CustomDocking.Docking
             return (MdiClientExists);
         }
 
-        protected  override void OnParentChanged(EventArgs e)
+        protected override void OnParentChanged(EventArgs e)
         {
             if (Theme == null)
             {
@@ -900,7 +903,7 @@ namespace Atiran.CustomDocking.Docking
 
             SetAutoHideWindowParent();
             GetMdiClientController().ParentForm = (this.Parent as Form);
-            base.OnParentChanged (e);
+            base.OnParentChanged(e);
         }
 
         private void SetAutoHideWindowParent()
@@ -918,9 +921,9 @@ namespace Atiran.CustomDocking.Docking
             }
         }
 
-        protected  override void OnVisibleChanged(EventArgs e)
+        protected override void OnVisibleChanged(EventArgs e)
         {
-            base.OnVisibleChanged (e);
+            base.OnVisibleChanged(e);
 
             if (Visible)
                 SetMdiClient();
@@ -1012,7 +1015,7 @@ namespace Atiran.CustomDocking.Docking
                 if (!pane.Visible || pane.DockState != DockState.Document)
                     continue;
 
-                count ++;
+                count++;
             }
 
             if (count == 0)
@@ -1123,8 +1126,8 @@ namespace Atiran.CustomDocking.Docking
         [LocalizedDescription("DockPanel_ContentAdded_Description")]
         public event EventHandler<DockContentEventArgs> ContentAdded
         {
-            add	{	Events.AddHandler(ContentAddedEvent, value);	}
-            remove	{	Events.RemoveHandler(ContentAddedEvent, value);	}
+            add { Events.AddHandler(ContentAddedEvent, value); }
+            remove { Events.RemoveHandler(ContentAddedEvent, value); }
         }
         protected virtual void OnContentAdded(DockContentEventArgs e)
         {
@@ -1138,8 +1141,8 @@ namespace Atiran.CustomDocking.Docking
         [LocalizedDescription("DockPanel_ContentRemoved_Description")]
         public event EventHandler<DockContentEventArgs> ContentRemoved
         {
-            add	{	Events.AddHandler(ContentRemovedEvent, value);	}
-            remove	{	Events.RemoveHandler(ContentRemovedEvent, value);	}
+            add { Events.AddHandler(ContentRemovedEvent, value); }
+            remove { Events.RemoveHandler(ContentRemovedEvent, value); }
         }
         protected virtual void OnContentRemoved(DockContentEventArgs e)
         {
